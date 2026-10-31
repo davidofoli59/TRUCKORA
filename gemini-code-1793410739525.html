@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO & Metadata -->
+    <title>TRUCCKORA — Logistics & On-Demand Haulage Services | Accra, Ghana</title>
+    <meta name="description" content="TRUCCKORA connects businesses, drivers, riders, car owners, truck operators, Aboboyaa riders, and water tanker suppliers across Accra and nationwide Ghana. Visit our office for in-person registration.">
+    <meta name="keywords" content="TRUCCKORA, Logistics Ghana, Aboboyaa delivery, Truck booking Accra, Water Tanker Ghana, Pick-up haulage, Ghana freight, driver registration Accra">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="TRUCCKORA — Logistics & Transport Services Ghana">
+    <meta property="og:description" content="Reliable transport, delivery, and water tanker services. In-person registration for drivers, riders, and vehicle owners in Accra, Ghana.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_GH">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Palette Exact Hexes */
+            --lime-bright: #18C729;
+            --lime-yellow: #FEF500;
+            --mint-green: #17C662;
+            --lime-light: #F5FF6C;
+            --deep-blue-dark: #03195B;
+            --deep-blue-mid: #0B2CB1;
+            --bright-blue: #1951FC;
+            --sky-blue: #3781FC;
+            --soft-blue: #CBE9FD;
+            --turquoise-sea: #64DBE8;
+            --black-pearl: #04141E;
+            --flush-orange: #FF6D04;
+            --white: #FFFFFF;
+            
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--black-pearl);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 3D Fast Scroll Animation Classes */
+        .fade-scroll {
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+            transition: opacity 0.4s ease-out, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .fade-scroll.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Header Alert Bar */
+        .top-alert {
+            background: linear-gradient(90deg, var(--black-pearl) 0%, var(--deep-blue-dark) 50%, var(--black-pearl) 100%);
+            border-bottom: 2px solid var(--flush-orange);
+            color: var(--lime-light);
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .top-alert span {
+            color: var(--flush-orange);
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-right: 8px;
+        }
+
+        /* Navigation Header */
+        header {
+            background: rgba(4, 20, 30, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(100, 219, 232, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-wrap {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand-logo img {
+            height: 44px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--soft-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--turquoise-sea);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn-ws {
+            background: #25D366;
+            color: var(--black-pearl);
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .btn-ws:hover {
+            background: #1EBE5D;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section - Gradient Background (No Video) */
+        .hero {
+            background: linear-gradient(135deg, var(--deep-blue-dark) 0%, var(--black-pearl) 70%, #02090F 100%);
+            padding: 90px 24px 70px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-container {
+            max-width: 1320px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(24, 199, 41, 0.15);
+            border: 1px solid var(--lime-bright);
+            color: var(--lime-bright);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            color: var(--white);
+        }
+
+        .hero-title span {
+            color: var(--lime-yellow);
+        }
+
+        .hero-text {
+            font-size: 1.15rem;
+            color: var(--soft-blue);
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--lime-bright);
+            color: var(--black-pearl);
+            padding: 16px 30px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 1rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--lime-yellow);
+            transform: translateY(-2px);
+        }
+
+        .hero-card {
+            background: var(--deep-blue-dark);
+            border: 2px solid var(--sky-blue);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .hero-card h3 {
+            color: var(--turquoise-sea);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+        }
+
+        .hero-card p {
+            color: var(--soft-blue);
+            font-size: 0.95rem;
+            margin-bottom: 14px;
+        }
+
+        /* Registration Policy Box */
+        .policy-box {
+            background: rgba(255, 109, 4, 0.1);
+            border: 2px dashed var(--flush-orange);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 40px auto;
+            max-width: 1320px;
+        }
+
+        .policy-box h3 {
+            color: var(--flush-orange);
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .policy-box p {
+            color: var(--white);
+            font-size: 0.95rem;
+        }
+
+        /* 15 Fleet Post Feed Grid (5 Columns on Desktop) */
+        .feed-section {
+            padding: 80px 24px;
+            max-width: 1320px;
+            margin: 0 auto;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-heading h2 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .section-heading p {
+            color: var(--turquoise-sea);
+            font-size: 1.1rem;
+        }
+
+        .feed-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        .post-card {
+            background: var(--deep-blue-dark);
+            border: 1px solid rgba(100, 219, 232, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--lime-bright);
+        }
+
+        .post-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background: var(--black-pearl);
+        }
+
+        .post-body {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .post-user {
+            font-size: 0.75rem;
+            color: var(--lime-light);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .post-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .post-desc {
+            font-size: 0.85rem;
+            color: var(--soft-blue);
+            margin-bottom: 12px;
+            flex-grow: 1;
+        }
+
+        .post-loc {
+            font-size: 0.8rem;
+            color: var(--turquoise-sea);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .btn-order {
+            background: var(--bright-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+            display: block;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .btn-order:hover {
+            background: var(--sky-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: #02090F;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 24px 30px 24px;
+        }
+
+        .footer-wrap {
+            max-width: 1320px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--lime-yellow);
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        .footer-col p, .footer-col li {
+            color: var(--soft-blue);
+            font-size: 0.875rem;
+            margin-bottom: 10px;
+            list-style: none;
+        }
+
+        .footer-col a {
+            color: var(--soft-blue);
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            font-size: 0.85rem;
+            color: #64748B;
+        }
+
+        /* Responsive Setup */
+        @media (max-width: 1200px) {
+            .feed-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 900px) {
+            .hero-container { grid-template-columns: 1fr; }
+            .feed-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-wrap { grid-template-columns: 1fr 1fr; }
+            .nav-links { display: none; }
+        }
+
+        @media (max-width: 580px) {
+            .feed-grid { grid-template-columns: 1fr; }
+            .footer-wrap { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Alert Header -->
+    <div class="top-alert">
+        <span>DRIVER & RIDER ALERT:</span> Registered drivers, riders, and vehicle owners receive order notifications every 5 minutes!
+    </div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="header-wrap">
+            <a href="#" class="brand-logo">
+                <img src="assets/logo.png" alt="TRUCCKORA Logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'160\' height=\'40\'><rect width=\'100%\' height=\'100%\' fill=\'%2303195B\'/><text x=\'50%\' y=\'55%\' font-family=\'sans-serif\' font-weight=\'bold\' font-size=\'18\' fill=\'%2318C729\' text-anchor=\'middle\' dominant-baseline=\'middle\'>TRUCCKORA</text></svg>'">
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#feed">Available Posts</a></li>
+                <li><a href="#registration">Registration Policy</a></li>
+                <li><a href="#contact">Office Directions</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <a href="https://wa.me/233262589317?text=Hello%20TRUCCKORA,%20I%20want%20to%20inquire%20about%20driver/rider%20registration%20and%20office%20directions." class="btn-ws" target="_blank">
+                    WhatsApp Inquiry
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container fade-scroll">
+            <div>
+                <span class="hero-badge">Accra Operational Hub</span>
+                <h1 class="hero-title">Need a <span>Truck, Pick-up, Aboboyaa</span> or Water Tanker?</h1>
+                <p class="hero-text">
+                    TRUCCKORA connects drivers, riders, car owners, truck operators, and water suppliers directly with customers across Ghana.
+                </p>
+                <div class="hero-buttons">
+                    <a href="https://wa.me/233262589317?text=Hello%20TRUCCKORA,%20please%20send%20me%20office%20directions%20for%20registration." class="btn-primary" target="_blank">
+                        Visit Office for Registration
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-card">
+                <h3>Order Dispatch Desk</h3>
+                <p>✔ Instant notifications sent every 5 minutes to registered accounts.</p>
+                <p>✔ Verified drivers and riders ready for local and nationwide haulage.</p>
+                <p>✔ Direct phone line: <strong>026 258 9317 / 053 563 0101</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Important Registration Policy Banner -->
+    <div style="padding: 0 24px;">
+        <div class="policy-box fade-scroll" id="registration">
+            <h3>NO ONLINE PAYMENTS — VISIT OUR OFFICE FOR REGISTRATION</h3>
+            <p>
+                All registrations for Drivers, Riders, Car Owners, Heavy Truck Owners, Aboboyaa (Tricycle) Operators, Water Tanker Suppliers, and Pick-up Owners must be completed in-person at our office in Accra. This applies to personal vehicle owners, business fleet owners, and individuals who rent or hire vehicles.
+            </p>
+        </div>
+    </div>
+
+    <!-- 15 Available Posts Grid (Filled with Driver, Rider, Water Tanker & Truck Posts) -->
+    <section class="feed-section" id="feed">
+        <div class="section-heading fade-scroll">
+            <h2>Live Availability & Driver Posts</h2>
+            <p>Direct posts from verified drivers, riders, and vehicle owners across Ghana.</p>
+        </div>
+
+        <div class="feed-grid">
+            <!-- Post 1 -->
+            <div class="post-card fade-scroll">
+                <img src="assets/aboboyaa-blue.jpg" class="post-img" alt="Aboboyaa Blue" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'160\' fill=\'%2303195B\'><text x=\'50%\' y=\'50%\' fill=\'%2318C729\' text-anchor=\'middle\'>Aboboyaa Blue</text></svg>'">
+                <div class="post-body">
+                    <div class="post-user">Posted by Kwame (Rider)</div>
+                    <div class="post-title">Aboboyaa (Blue)</div>
+                    <div class="post-desc">Ready for market goods and short deliveries. Quick delivery guaranteed.</div>
+                    <div class="post-loc">📍 Location: Madina | Delivers: Accra, Adenta, East Legon</div>
+                    <a href="https://wa.me/233262589317?text=Order%20Now:%20Aboboyaa%20Blue%20Madina" class="btn-order" target="_blank">Order Now</a>
+                </div>
+            </div>
+
+            <!-- Post 2 -->
+            <div class="post-card fade-scroll">
+                <img src="assets/aboboyaa-red.jpg" class="post-img" alt="Aboboyaa Red" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'160\' fill=\'%2303195B\'><text x=\'50%\' y=\'50%\' fill=\'%23FEF500\' text-anchor=\'middle\'>Aboboyaa Red</text></svg>'">
+                <div class="post-body">
+                    <div class="post-user">Posted by Kojo (Rider)</div>
+                    <div class="post-title">Aboboyaa (Red)</div>
+                    <div class="post-desc">Available for light cargo, small packages, and town runs.</div>
+                    <div class="post-loc">📍 Location: Circle | Delivers: Kaneshie, Osu, Ridge</div>
+                    <a href="https://wa.me/233262589317?text=Order%20Now:%20Aboboyaa%20Red%20Circle" class="btn-order" target="_blank">Order Now</a>
+                </div>
+            </div>
+
+            <!-- Post 3 -->
+            <div class="post-card fade-scroll">
+                <img src="assets/aboboyaa-green.jpg" class="post-img" alt="Aboboyaa Green" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'160\' fill=\'%2303195B\'><text x=\'50%\' y=\'50%\' fill=\'%2317C662\' text-anchor=\'middle\'>Aboboyaa Green</text></svg>'">
+                <div class="post-body">
+                    <div class="post-user">Posted by Yaw (Rider)</div>
+                    <div class="post-title">Aboboyaa (Green)</div>
+                    <div class="post-desc">Strong tricycle for affordable local deliveries and neighborhood moves.</div>
+                    <div class="post-loc">📍 Location: Kasoa | Delivers: Kasoa, Weija, Mallam</div>
+                    <a href="https://wa.me/233262589317?text=Order%20Now:%20Aboboyaa%20Green%20Kasoa" class="btn-order" target="_blank">Order Now</a>
+                </div>
+            </div>
+
+            <!-- Post 4 -->
+            <div class="post-card fade-scroll">
+                <img src="assets/kia-truck-blue.jpg" class="post-img" alt="Kia Truck Blue" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'160\' fill=\'%2303195B\'><text x=\'50%\' y=\'50%\' fill=\'%2318C729\' text-anchor=\'middle\'>Kia Truck Blue</text></svg>'">
+                <div class="post-body">
+                    <div class="post-user">Posted by Samuel (Driver)</div>
+                    <div class="post-title">Kia Truck (Blue)</div>
+                    <div class="post-desc">Medium load capacity. Perfect for house moves and store inventory.</div>
+                    <div class="post-loc">📍 Location: Spintex | Delivers: Tema, Teshie, Sakumono</div>
+                    <a href="https://wa.me/233262589317?text=Order%20Now:%20Kia%20Truck%20Spintex" class="btn-order" target="_blank">Order Now</a>
+                </div>
+            </div>
+
+            <!-- Post 5 -->
+            <div class="post-card fade-scroll">
+                <img src="assets/kia-truck-white.jpg" class="post-img" alt="Kia Truck White" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'160\' fill=\'%2303195B\'><text x=\'50%\' y=\'50%\' fill=\'%23FEF500\' text-anchor=\'middle\'>Kia Truck White</text></svg>'">
+                <div class="post-body">
+                    <div class="post-user">Posted by Isaac (Car Owner)</div>
+                    <div class="post-title">Kia Truck (White)</div>
+                    <div class="post-desc">Well-maintained vehicle for commercial haulage and corporate moves.</div>
+                    <div class="post-loc">📍 Location: Achimota | Delivers: Dome, Nsawam, Lapaz</div>
+                    <a href="https://wa.me/233262589317?text=Order%20Now:%20Kia%20Truck%20Achimota" class="btn-order" target="_blank">Order Now</a>
+                </div>
+            </div>
+
+            <!-- Post 6 -->
+            <div class="post-card fade-scroll">
+                <img src="assets/rhino-truck-yellow.jpg" class="post-img" alt="Rhino Truck Yellow" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'160\' fill=\'%2303195B\'><text x=\'50%\' y=\'50%\' fill=\'%23FF6D04\' text-anchor=\'middle\'>Rhino Heavy Truck</text></svg>'">
+                <div class="post-body">
+                    <div class="post-user">Posted by Kofi (Driver)</div>
+                    <div class="post-title">Rhino Heavy Truck (Yellow)</div>
+                    <div class="post-desc">Heavy loads and construction materials. Ready for long distances.</div>
+                    <div class="post-loc">📍 Location: Tema Industrial | Delivers: All Regions in Ghana</div>
+                    <a href="https://wa.me/233262589317?text=Order%20Now:%20Rhino%20Truck%20Tema" class="btn-order" target="_blank">Order Now</a>
+                </div>
+            </div>
+
+            <!-- Post 7 -->
+            <div class="post-card fade-scroll">
+                <img src="assets/rhino-truck-white.jpg" class="post-img" alt="Rhino Truck White" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'160\' fill=\'%2303195B\'><text x=\'50%\' y=\'50%\' fill=\'%2318C729\' text-anchor=\'middle\'>Rhino White</text></svg>'">
+                <div class="post-body">
+                    <div class="post-user">Posted by Mensah (Driver)</div>
+                    <div class="post-title">Rhino Heavy Truck (White)</div>
+                    <div class="post-desc">High carrying capacity for bulk commercial cargo and factory items.</div>
+                    <div class="post-loc">📍 Location: Dawhenya | Delivers: Kumasi, Takoradi, Tamale</div>
+                    <a href="https://wa.me/233262589317?text=Order%20Now:%20Rhino%20White%20Dawhenya" class="btn-order" target="_blank">Order Now</a>
+                </div>
+            </div>
+
+            <!-- Post 8 -->
+            <div class="post-card fade-scroll">
+                <img src="assets/cargo-tricycle-green.jpg" class="post-img" alt="Cargo Tricycle Green" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'160\' fill=\'%2303195B\'><text x=\'50%\' y=\'50%\' fill=\'%2317C662\' text-anchor=\'middle\'>Cargo Tricycle</text></svg>'">
+                <div class="post-body">
+                    <div class="post-user">Posted by Ibrahim (Rider)</div>
+                    <div class="post-title">Cargo Tricycle (Green)</div>
+                    <div class="post-desc">Flexible small load delivery. Easy navigation through heavy traffic.</div>
+                    <div class="post-loc">📍 Location: Dansoman | Delivers: Korle Bu, Jamestown, Mamprobi</div>
+                    <a href="https://wa.me/233262589317?text=Order%20Now:%20Cargo%20Tricycle%20Dansoman" class="btn-order" target="_blank">Order Now</a>
+                </div>
+            </div>
+
+            <!-- Post 9 -->
+            <div class="post-card fade-scroll">
+                <img src="assets/cargo-tricycle-blue.jpg" class="post-img" alt="Cargo Tricycle Blue" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'160\' fill=\'%2303195B\'><text x=\'50%\' y=\'50%\' fill=\'%233781FC\' text-anchor=\'middle\'>Cargo Tricycle Blue</text></svg>'">
+                <div class="post-body">
+                    <div class="post-user">Posted by Daniel (Rider Owner)</div>
+                    <div class="post-title">Cargo Tricycle (Blue)</div>
+                    <div class="post-desc">Reliable daily transport for retail goods, boxes, and shop supply.</div>
+                    <div class="post-loc">📍 Location: Agbogbloshie | Delivers: Makola, Abossey Okai</div>
+                    <a href="https://wa.me/233262589317?text=Order%20Now:%20Cargo%20Tricycle%20Agbogbloshie" class="btn-order" target="_blank">Order Now</a>
+                </div>
+            </div>
+
+            <!-- Post 10 -->
+            <div class="post-card fade-scroll">
+                <img src="assets/large-truck-container.jpg" class="post-img" alt="Container Truck" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'160\' fill=\'%2303195B\'><text x=\'50%\' y=\'50%\' fill=\'%2318C729\' text-anchor=\'middle\'>Container Truck</text></svg>'">
+                <div class="post-body">
+                    <div class="post-user">Posted by Boateng (Fleet Driver)</div>
+                    <div class="post-title">Large Container Truck</div>
+                    <div class="post-desc">Long distance and bulk shipment transport. Safe and secured loading.</div>
+                    <div class="post-loc">📍 Location: Tema Port | Delivers: Nationwide & Borders</div>
+                    <a href="https://wa.me/233262589317?text=Order%20Now:%20Container%20Truck%20Tema" class="btn-order" target="_blank">Order Now</a>
+                </div>
+            </div>
+
+            <!-- Post 11 -->
+            <div class="post-card fade-scroll">
+                <img src="assets/water-tanker-small.jpg" class="post-img" alt="Water Tanker Small" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'160\' fill=\'%2303195B\'><text x=\'50%\' y=\'50%\' fill=\'%2364DBE8\' text-anchor=\'middle\'>Water Tanker Small</text></svg>'">
+                <div class="post-body">
+                    <div class="post-user">Posted by Water Available (Order Now)</div>
+                    <div class="post-title">Clean Water Tanker (Small)</div>
+                    <div class="post-desc">Clean fresh water delivery for homes, small offices, and events.</div>
+                    <div class="post-loc">📍 Location: East Legon | Delivers: Legon, Airport, Roman Ridge</div>
+                    <a href="https://wa.me/233262589317?text=Water%20Available%20Order%20Now:%20Small%20Tanker" class="btn-order" target="_blank">Water Available — Order Now</a>
+                </div>
+            </div>
+
+            <!-- Post 12 -->
+            <div class="post-card fade-scroll">
+                <img src="assets/water-tanker-medium.jpg" class="post-img" alt="Water Tanker Medium" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'160\' fill=\'%2303195B\'><text x=\'50%\' y=\'50%\' fill=\'%2364DBE8\' text-anchor=\'middle\'>Water Tanker Medium</text></svg>'">
+                <div class="post-body">
+                    <div class="post-user">Posted by Water Available (Order Now)</div>
+                    <div class="post-title">Hygienic Water Tanker (Medium)</div>
+                    <div class="post-desc">Reliable bulk water supply for residential complexes and schools.</div>
+                    <div class="post-loc">📍 Location: Adenta | Delivers: Oyibi, Dodowa, Oyarifa</div>
+                    <a href="https://wa.me/233262589317?text=Water%20Available%20Order%20Now:%20Medium%20Tanker" class="btn-order" target="_blank">Water Available — Order Now</a>
+                </div>
+            </div>
+
+            <!-- Post 13 -->
+            <div class="post-card fade-scroll">
+                <img src="assets/water-tanker-large.jpg" class="post-img" alt="Water Tanker Large" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'160\' fill=\'%2303195B\'><text x=\'50%\' y=\'50%\' fill=\'%2364DBE8\' text-anchor=\'middle\'>Water Tanker Large</text></svg>'">
+                <div class="post-body">
+                    <div class="post-user">Posted by Water Available (Order Now)</div>
+                    <div class="post-title">Bulk Water Tanker (Large)</div>
+                    <div class="post-desc">Large volume water supply for construction sites and commercial plants.</div>
+                    <div class="post-loc">📍 Location: Pokuase | Delivers: Amasaman, Ablekuma, Greater Accra</div>
+                    <a href="https://wa.me/233262589317?text=Water%20Available%20Order%20Now:%20Large%20Tanker" class="btn-order" target="_blank">Water Available — Order Now</a>
+                </div>
+            </div>
+
+            <!-- Post 14 -->
+            <div class="post-card fade-scroll">
+                <img src="assets/pickup-white.jpg" class="post-img" alt="Pickup White" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'160\' fill=\'%2303195B\'><text x=\'50%\' y=\'50%\' fill=\'%2318C729\' text-anchor=\'middle\'>Pickup White</text></svg>'">
+                <div class="post-body">
+                    <div class="post-user">Posted by Emmanuel (Car Owner)</div>
+                    <div class="post-title">Pick-up Truck (White)</div>
+                    <div class="post-desc">Fast small moves, equipment transportation, and corporate runs.</div>
+                    <div class="post-loc">📍 Location: Cantonments | Delivers: Labone, Airport City, Osu</div>
+                    <a href="https://wa.me/233262589317?text=Order%20Now:%20Pickup%20White%20Cantonments" class="btn-order" target="_blank">Order Now</a>
+                </div>
+            </div>
+
+            <!-- Post 15 -->
+            <div class="post-card fade-scroll">
+                <img src="assets/pickup-silver.jpg" class="post-img" alt="Pickup Silver" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'160\' fill=\'%2303195B\'><text x=\'50%\' y=\'50%\' fill=\'%23FEF500\' text-anchor=\'middle\'>Pickup Silver</text></svg>'">
+                <div class="post-body">
+                    <div class="post-user">Posted by Alex (Driver)</div>
+                    <div class="post-title">Pick-up Truck (Silver)</div>
+                    <div class="post-desc">Comfortable and strong truck for personal goods or business haulage.</div>
+                    <div class="post-loc">📍 Location: Sakumono | Delivers: Lashibi, Tema, Spintex</div>
+                    <a href="https://wa.me/233262589317?text=Order%20Now:%20Pickup%20Silver%20Sakumono" class="btn-order" target="_blank">Order Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-wrap fade-scroll">
+            <div class="footer-col">
+                <img src="assets/logo.png" alt="TRUCCKORA Logo" style="height: 40px; margin-bottom: 16px;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'160\' height=\'40\'><rect width=\'100%\' height=\'100%\' fill=\'%2303195B\'/><text x=\'50%\' y=\'55%\' font-family=\'sans-serif\' font-weight=\'bold\' font-size=\'18\' fill=\'%2318C729\' text-anchor=\'middle\' dominant-baseline=\'middle\'>TRUCCKORA</text></svg>'">
+                <p>TRUCCKORA is a high-standard transport platform connecting verified Drivers, Riders, Car Owners, Truck Operators, and Water Tanker Suppliers across Ghana.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Registration & Roles</h4>
+                <ul>
+                    <li><a href="#registration">Driver Registration</a></li>
+                    <li><a href="#registration">Rider Registration</a></li>
+                    <li><a href="#registration">Car & Truck Owners</a></li>
+                    <li><a href="#registration">Fleet Hirers & Renters</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Transport Fleet</h4>
+                <ul>
+                    <li><a href="#feed">Aboboyaa (Tricycles)</a></li>
+                    <li><a href="#feed">Pick-up Trucks</a></li>
+                    <li><a href="#feed">Kia & Rhino Trucks</a></li>
+                    <li><a href="#feed">Water Tankers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Office & Contact</h4>
+                <p>📍 Location: Accra, Ghana</p>
+                <p>📞 Phone: 026 258 9317 / 053 563 0101</p>
+                <p style="color: var(--flush-orange); font-weight: bold;">Note: No online payments. In-person office registration required.</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 TRUCCKORA. All rights reserved. | Transport Made Easy.
+        </div>
+    </footer>
+
+    <!-- 3D Scroll Fade-In/Out Observer Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    } else {
+                        entry.target.classList.remove('visible'); // Enables fast fadeout when scrolling away
+                    }
+                });
+            }, observerOptions);
+
+            const scrollElements = document.querySelectorAll('.fade-scroll');
+            scrollElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
