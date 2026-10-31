@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRUCCKORA - Transport Made Easy | Accra, Ghana</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Three.js for 3D SaaS Visuals -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        :root {
+            /* Color Palette */
+            --lime-bright: #18C729;
+            --lime-yellow: #FEF500;
+            --mint-green: #17C662;
+            --lime-light: #F5FF6C;
+            --deep-blue-dark: #03195B;
+            --deep-blue-mid: #0B2CB1;
+            --bright-blue: #1951FC;
+            --sky-blue: #3781FC;
+            --soft-blue: #CBE9FD;
+            --turquoise-sea: #64DBE8;
+            --black-pearl: #04141E;
+            --flush-orange: #FF6D04;
+            
+            --white: #FFFFFF;
+            --gray-100: #F8FAFC;
+            --gray-200: #E2E8F0;
+            --gray-600: #475569;
+            --gray-800: #1E293B;
+            
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--black-pearl);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Top Announcement Bar */
+        .announcement-bar {
+            background: linear-gradient(90deg, var(--flush-orange), #D95200);
+            color: var(--white);
+            padding: 8px 16px;
+            text-align: center;
+            font-size: 0.875rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .announcement-bar span {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+        }
+
+        /* Top Header */
+        header {
+            background: var(--black-pearl);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-container img {
+            height: 42px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--turquoise-sea);
+        }
+
+        .header-contact {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .header-phone {
+            text-align: right;
+            font-size: 0.85rem;
+        }
+
+        .header-phone strong {
+            display: block;
+            color: var(--lime-yellow);
+            font-size: 1rem;
+        }
+
+        .btn-call {
+            background: var(--lime-bright);
+            color: var(--black-pearl);
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn-call:hover {
+            transform: translateY(-2px);
+            background: var(--mint-green);
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: radial-gradient(circle at 50% 20%, var(--deep-blue-mid) 0%, var(--black-pearl) 70%);
+            padding: 80px 20px;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(245, 255, 108, 0.15);
+            border: 1px solid var(--lime-light);
+            color: var(--lime-light);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-title span {
+            color: var(--lime-yellow);
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--soft-blue);
+            margin-bottom: 30px;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            background: var(--lime-bright);
+            color: var(--black-pearl);
+            padding: 16px 28px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: var(--lime-yellow);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(245, 255, 108, 0.2);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: var(--white);
+            padding: 16px 28px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1EBE5D;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+        }
+
+        /* 5-Min Alert Pill */
+        .alert-pill {
+            background: rgba(3, 25, 91, 0.8);
+            border: 1px solid var(--bright-blue);
+            padding: 12px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.9rem;
+        }
+
+        .alert-icon {
+            width: 12px;
+            height: 12px;
+            background: var(--lime-bright);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--lime-bright);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(24, 199, 41, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(24, 199, 41, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(24, 199, 41, 0); }
+        }
+
+        /* Important Notice Banner */
+        .notice-banner {
+            background: var(--deep-blue-dark);
+            border-y: 1px solid var(--bright-blue);
+            padding: 24px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .notice-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(4, 20, 30, 0.8);
+            border: 2px dashed var(--flush-orange);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .notice-title {
+            color: var(--flush-orange);
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .notice-desc {
+            color: var(--soft-blue);
+            font-size: 0.95rem;
+        }
+
+        /* 3D Motion Storytelling Section */
+        .storytelling-section {
+            padding: 80px 20px;
+            background: var(--black-pearl);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+        }
+
+        .section-header h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: var(--turquoise-sea);
+            font-size: 1.05rem;
+        }
+
+        .story-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            background: var(--deep-blue-dark);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid var(--bright-blue);
+        }
+
+        .story-video-sim {
+            position: relative;
+            aspect-ratio: 16/9;
+            background: var(--black-pearl);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--turquoise-sea);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #story-canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .story-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .story-step-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 16px 20px;
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+
+        .story-step-card.active {
+            border-color: var(--lime-bright);
+            background: rgba(24, 199, 41, 0.05);
+        }
+
+        .story-step-card h4 {
+            color: var(--lime-yellow);
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .story-step-card p {
+            font-size: 0.875rem;
+            color: var(--soft-blue);
+        }
+
+        /* Fleet/Vehicle Grid Section */
+        .fleet-section {
+            padding: 80px 20px;
+            background: var(--black-pearl);
+        }
+
+        .fleet-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .fleet-card {
+            background: var(--deep-blue-dark);
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .fleet-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--sky-blue);
+        }
+
+        .fleet-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: var(--black-pearl);
+        }
+
+        .fleet-content {
+            padding: 20px;
+        }
+
+        .fleet-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .fleet-desc {
+            font-size: 0.85rem;
+            color: var(--soft-blue);
+            margin-bottom: 16px;
+        }
+
+        .fleet-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .fleet-features li {
+            font-size: 0.8rem;
+            color: var(--gray-200);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .fleet-features li::before {
+            content: "✓";
+            color: var(--lime-bright);
+            font-weight: bold;
+        }
+
+        .btn-card {
+            width: 100%;
+            background: var(--bright-blue);
+            color: var(--white);
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-align: center;
+            display: block;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-card:hover {
+            background: var(--sky-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: #020C13;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 20px 30px 20px;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about img {
+            height: 40px;
+            margin-bottom: 16px;
+        }
+
+        .footer-about p {
+            color: var(--soft-blue);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .social-icon:hover {
+            background: var(--bright-blue);
+        }
+
+        .social-icon img {
+            width: 18px;
+            height: 18px;
+        }
+
+        .footer-column h4 {
+            color: var(--lime-yellow);
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: var(--soft-blue);
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+
+        .footer-column a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--gray-600);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--deep-blue-dark);
+            border: 1px solid var(--turquoise-sea);
+            border-radius: 16px;
+            max-width: 500px;
+            width: 100%;
+            padding: 30px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: var(--white);
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .hero-container, .story-container {
+                grid-template-columns: 1fr;
+            }
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            .hero-title {
+                font-size: 2.25rem;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar">
+        <span>Important Registration Alert</span>
+        Registered Drivers, Riders & Vehicle Owners receive instant job notifications every 5 minutes!
+    </div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo-container">
+                <img src="assets/logo.png" alt="TRUCCKORA Logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'160\' height=\'40\'><rect width=\'100%\' height=\'100%\' fill=\'%2303195B\'/><text x=\'50%\' y=\'55%\' font-family=\'sans-serif\' font-weight=\'bold\' font-size=\'18\' fill=\'%2318C729\' text-anchor=\'middle\' dominant-baseline=\'middle\'>TRUCCKORA</text></svg>'">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#vehicles">Available Vehicles</a></li>
+                <li><a href="#how-it-works">3D SaaS Workflow</a></li>
+                <li><a href="#registration">Registration Info</a></li>
+                <li><a href="#contact">Contact & Location</a></li>
+            </ul>
+            <div class="header-contact">
+                <div class="header-phone">
+                    <span style="color: var(--soft-blue); font-size: 0.75rem;">Support & Registration</span>
+                    <strong>026 258 9317 / 053 563 0101</strong>
+                </div>
+                <a href="https://wa.me/233262589317?text=Hello%20TRUCCKORA,%20I%20want%20to%20inquire%20about%20driver/rider/vehicle%20owner%20registration%20and%20office%20directions." class="btn-call" target="_blank">
+                    <img src="assets/icons/whatsapp.svg" width="18" height="18" alt="" onerror="this.style.display='none'">
+                    WhatsApp Us
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Three.js 3D Background Canvas -->
+    <section class="hero">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-container">
+            <div class="hero-text">
+                <div class="hero-badge">Official Onboarding & Logistics Network</div>
+                <h1 class="hero-title">Need a <span>Truck, Pick-up, Aboboyaa</span> or Water Tanker?</h1>
+                <p class="hero-subtitle">Ghana's high-standard corporate transport ecosystem connecting trusted Drivers, Riders, Car Owners, and Fleet Hirers directly with clients.</p>
+                
+                <div class="hero-cta-group">
+                    <button class="btn-primary" onclick="openDirectionsModal()">
+                        Visit Office for Registration
+                    </button>
+                    <a href="https://wa.me/233262589317?text=Hello%20TRUCCKORA,%20please%20send%20me%20office%20directions%20for%20in-person%20registration." class="btn-whatsapp" target="_blank">
+                        Ask Directions on WhatsApp
+                    </a>
+                </div>
+
+                <div class="alert-pill">
+                    <div class="alert-icon"></div>
+                    <div>
+                        <strong>Early Registration Advantage:</strong> Verified Drivers, Riders & Vehicle Owners get automatic trip notifications every 5 minutes!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Important Security & Payment Notice -->
+    <section class="notice-banner" id="registration">
+        <div class="notice-container">
+            <div class="notice-title">⚠️ STRICT SECURITY & IN-PERSON REGISTRATION POLICY</div>
+            <div class="notice-desc">
+                <strong>NO PAYMENTS ARE ACCEPTED ONLINE.</strong> All registrations must be completed in-person at our physical office in Accra, Ghana. Whether you own a Car, Heavy Truck, Aboboyaa (Tricycle), Water Tanker, or Pick-up—or operate as an independent Driver, Rider, or Fleet Hirer—visit our office directly to get verified and activated.
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D SaaS Motion Storytelling Section -->
+    <section class="storytelling-section" id="how-it-works">
+        <div class="section-header">
+            <h2>3D SaaS Logistics Engine</h2>
+            <p>How TRUCCKORA connects drivers, riders, and vehicle owners to continuous transport orders.</p>
+        </div>
+
+        <div class="story-container">
+            <div class="story-video-sim">
+                <canvas id="story-canvas"></canvas>
+            </div>
+            <div class="story-steps">
+                <div class="story-step-card active">
+                    <h4>1. In-Person Verification & Activation</h4>
+                    <p>Visit our Accra office to verify your vehicle (Truck, Pick-up, Aboboyaa, Water Tanker) and receive official system onboarding.</p>
+                </div>
+                <div class="story-step-card">
+                    <h4>2. 5-Minute Automated Order Dispatch</h4>
+                    <p>Our SaaS dispatch engine scans active demands and broadcasts available orders every 5 minutes to registered drivers and riders.</p>
+                </div>
+                <div class="story-step-card">
+                    <h4>3. Secure Direct Pick-up & Execution</h4>
+                    <p>Accept trips seamlessly with full tracking, transparent corporate terms, and structured payouts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicles & Services Section -->
+    <section class="fleet-section" id="vehicles">
+        <div class="section-header">
+            <h2>Our Supported Fleet & Services</h2>
+            <p>Select your vehicle category to learn about transport capability or partner registration options.</p>
+        </div>
+
+        <div class="fleet-grid">
+            <!-- Aboboyaa (Blue) -->
+            <div class="fleet-card">
+                <img src="assets/aboboyaa-blue.jpg" class="fleet-img" alt="Aboboyaa Blue" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'180\' fill=\'%2303195B\'><text x=\'50%\' y=\'50%\' fill=\'%2318C729\' text-anchor=\'middle\'>Aboboyaa (Blue)</text></svg>'">
+                <div class="fleet-content">
+                    <h3 class="fleet-title">Aboboyaa (Blue)</h3>
+                    <p class="fleet-desc">Small loads, quick trips, and short-distance urban transport.</p>
+                    <ul class="fleet-features">
+                        <li>Strong & fuel efficient</li>
+                        <li>Ideal for small items</li>
+                        <li>High urban maneuverability</li>
+                    </ul>
+                    <button class="btn-card" onclick="openDirectionsModal('Aboboyaa Rider')">Register Tricycle / Rider</button>
+                </div>
+            </div>
+
+            <!-- Kia Truck (Blue) -->
+            <div class="fleet-card">
+                <img src="assets/kia-truck-blue.jpg" class="fleet-img" alt="Kia Truck Blue" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'180\' fill=\'%2303195B\'><text x=\'50%\' y=\'50%\' fill=\'%2318C729\' text-anchor=\'middle\'>Kia Truck (Blue)</text></svg>'">
+                <div class="fleet-content">
+                    <h3 class="fleet-title">Kia Truck (Blue)</h3>
+                    <p class="fleet-desc">Medium loads, furniture, construction materials, and household moves.</p>
+                    <ul class="fleet-features">
+                        <li>Spacious cargo bed</li>
+                        <li>Well maintained fleet</li>
+                        <li>Inter-city transport ready</li>
+                    </ul>
+                    <button class="btn-card" onclick="openDirectionsModal('Kia Truck Owner/Driver')">Register Truck / Driver</button>
+                </div>
+            </div>
+
+            <!-- Rhino Truck (Yellow) -->
+            <div class="fleet-card">
+                <img src="assets/rhino-truck-yellow.jpg" class="fleet-img" alt="Rhino Truck Yellow" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'180\' fill=\'%2303195B\'><text x=\'50%\' y=\'50%\' fill=\'%2318C729\' text-anchor=\'middle\'>Rhino Truck</text></svg>'">
+                <div class="fleet-content">
+                    <h3 class="fleet-title">Rhino Heavy Truck</h3>
+                    <p class="fleet-desc">Heavy loads, bulk goods, and large commercial haulage.</p>
+                    <ul class="fleet-features">
+                        <li>High load capacity</li>
+                        <li>Durable chassis for rough terrain</li>
+                        <li>Long-distance haulage</li>
+                    </ul>
+                    <button class="btn-card" onclick="openDirectionsModal('Heavy Truck')">Register Heavy Fleet</button>
+                </div>
+            </div>
+
+            <!-- Water Tanker -->
+            <div class="fleet-card">
+                <img src="assets/water-tanker-small.jpg" class="fleet-img" alt="Water Tanker" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'180\' fill=\'%2303195B\'><text x=\'50%\' y=\'50%\' fill=\'%2318C729\' text-anchor=\'middle\'>Water Tanker</text></svg>'">
+                <div class="fleet-content">
+                    <h3 class="fleet-title">Water Tanker Fleet</h3>
+                    <p class="fleet-desc">Bulk water delivery for homes, construction sites, and businesses.</p>
+                    <ul class="fleet-features">
+                        <li>Hygienic steel tanks</li>
+                        <li>Multiple capacity options</li>
+                        <li>Fast dispatch network</li>
+                    </ul>
+                    <button class="btn-card" onclick="openDirectionsModal('Water Tanker')">Register Water Tanker</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-about">
+                <img src="assets/logo.png" alt="TRUCCKORA Logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'160\' height=\'40\'><rect width=\'100%\' height=\'100%\' fill=\'%2303195B\'/><text x=\'50%\' y=\'55%\' font-family=\'sans-serif\' font-weight=\'bold\' font-size=\'18\' fill=\'%2318C729\' text-anchor=\'middle\' dominant-baseline=\'middle\'>TRUCCKORA</text></svg>'">
+                <p>TRUCCKORA is Ghana's premier logistics platform bridging drivers, riders, vehicle owners, and commercial customers with seamless dispatching.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><img src="assets/icons/facebook.svg" alt="FB" onerror="this.style.display='none'"></a>
+                    <a href="#" class="social-icon"><img src="assets/icons/instagram.svg" alt="IG" onerror="this.style.display='none'"></a>
+                    <a href="#" class="social-icon"><img src="assets/icons/linkedin.svg" alt="LN" onerror="this.style.display='none'"></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Partnerships</h4>
+                <ul>
+                    <li><a href="#registration">Driver Registration</a></li>
+                    <li><a href="#registration">Rider Onboarding</a></li>
+                    <li><a href="#registration">Car & Truck Owners</a></li>
+                    <li><a href="#registration">Fleet Renters / Hirers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Fleet Types</h4>
+                <ul>
+                    <li><a href="#vehicles">Aboboyaa (Tricycles)</a></li>
+                    <li><a href="#vehicles">Pick-up Trucks</a></li>
+                    <li><a href="#vehicles">Kia & Rhino Trucks</a></li>
+                    <li><a href="#vehicles">Water Tankers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Headquarters & Office</h4>
+                <p style="color: var(--soft-blue); font-size: 0.85rem; margin-bottom: 10px;">
+                    📍 Accra, Ghana (Main Operations Center)
+                </p>
+                <p style="color: var(--soft-blue); font-size: 0.85rem; margin-bottom: 10px;">
+                    📞 026 258 9317 / 053 563 0101
+                </p>
+                <p style="color: var(--lime-yellow); font-size: 0.8rem; font-weight: bold;">
+                    🔒 Security Reminder: No online payment accepted. Office visit required for onboarding.
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 TRUCCKORA Logistics Platform. All Rights Reserved. | Transport Made Easy.
+        </div>
+    </footer>
+
+    <!-- Directions & Onboarding Modal -->
+    <div class="modal" id="directionsModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeDirectionsModal()">&times;</span>
+            <h3 style="color: var(--lime-yellow); margin-bottom: 15px;">In-Person Office Registration</h3>
+            <p style="color: var(--soft-blue); font-size: 0.9rem; margin-bottom: 20px;">
+                To complete your registration as a Driver, Rider, Car Owner, or Fleet Hirer, please visit our main administrative office in Accra, Ghana.
+            </p>
+            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <strong style="color: var(--white); display: block; margin-bottom: 5px;">Required Verification Documents:</strong>
+                <ul style="color: var(--gray-200); font-size: 0.85rem; padding-left: 20px;">
+                    <li>Valid Driver's License / Rider ID</li>
+                    <li>Vehicle Registration Documents</li>
+                    <li>National ID Card (Ghana Card)</li>
+                </ul>
+            </div>
+            <a id="modalWhatsAppLink" href="https://wa.me/233262589317?text=Hello%20TRUCCKORA,%20I%20want%20office%20directions%20for%20in-person%20registration." class="btn-whatsapp" style="width: 100%; justify-content: center;" target="_blank">
+                Connect on WhatsApp for Directions
+            </a>
+        </div>
+    </div>
+
+    <!-- 3D SaaS Animation Scripts -->
+    <script>
+        // Hero 3D Globe/Particles Animation using Three.js
+        const initHero3D = () => {
+            const canvas = document.getElementById('hero-canvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+
+            // Particles Sphere
+            const geometry = new THREE.BufferGeometry();
+            const count = 600;
+            const positions = new Float32Array(count * 3);
+            const colors = new Float32Array(count * 3);
+
+            for (let i = 0; i < count * 3; i += 3) {
+                positions[i] = (Math.random() - 0.5) * 10;
+                positions[i + 1] = (Math.random() - 0.5) * 10;
+                positions[i + 2] = (Math.random() - 0.5) * 10;
+
+                // Color mix: Cyan & Lime
+                colors[i] = 0.09; // R
+                colors[i + 1] = 0.78; // G
+                colors[i + 2] = 0.16; // B
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 0.05,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8
+            });
+
+            const points = new THREE.Points(geometry, material);
+            scene.add(points);
+
+            camera.position.z = 5;
+
+            const animate = () => {
+                requestAnimationFrame(animate);
+                points.rotation.x += 0.001;
+                points.rotation.y += 0.002;
+                renderer.render(scene, camera);
+            };
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        };
+
+        // Storytelling 3D Cube Canvas
+        const initStory3D = () => {
+            const canvas = document.getElementById('story-canvas');
+            if(!canvas) return;
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            
+            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+
+            const geometry = new THREE.IcosahedronGeometry(1.5, 0);
+            const material = new THREE.MeshBasicMaterial({
+                color: 0x18C729,
+                wireframe: true
+            });
+            const cube = new THREE.Mesh(geometry, material);
+            scene.add(cube);
+
+            camera.position.z = 3.5;
+
+            const animateStory = () => {
+                requestAnimationFrame(animateStory);
+                cube.rotation.x += 0.008;
+                cube.rotation.y += 0.008;
+                renderer.render(scene, camera);
+            };
+
+            animateStory();
+        };
+
+        // Modal Handlers
+        const openDirectionsModal = (category = 'Vehicle Owner / Driver') => {
+            const modal = document.getElementById('directionsModal');
+            const waLink = document.getElementById('modalWhatsAppLink');
+            waLink.href = `https://wa.me/233262589317?text=Hello%20TRUCCKORA,%20I%20want%20to%20register%20as%20a%20${encodeURIComponent(category)}.%20Please%20send%20me%20office%20directions.`;
+            modal.style.display = 'flex';
+        };
+
+        const closeDirectionsModal = () => {
+            document.getElementById('directionsModal').style.display = 'none';
+        };
+
+        window.onload = () => {
+            initHero3D();
+            initStory3D();
+        };
+    </script>
+</body>
+</html>
